@@ -8,11 +8,12 @@
     import { createEventDispatcher } from "svelte";
 
     let bgTransparent = 1;
+    export let animSearch;
 
     let dispatch = createEventDispatcher();
 
-    function handleShowSearch() {
-        dispatch("showSearch");
+    function handleShowBigSearch() {
+        dispatch("showBigSearch");
     }
 </script>
 
@@ -28,7 +29,7 @@
         <div>Outlet</div>
     </div>
     <div class="flex items-center justify-end space-x-6">
-        <Search on:showSearch={handleShowSearch} />
+        <Search on:showBigSearch={handleShowBigSearch} {animSearch} />
         <CoverIcons {bgTransparent}>
             <Cuore />
         </CoverIcons>

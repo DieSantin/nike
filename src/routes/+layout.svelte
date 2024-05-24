@@ -2,24 +2,27 @@
     import "$css/app.css";
     import Navbar from "$inc/Navbar.svelte";
     import Navbar2 from "$inc/Navbar2.svelte";
-    import ShowSearch from "$inc/ShowSearch.svelte";
+    import BigSearch from "$inc/BigSearch.svelte";
 
-    let show = 0;
+    let show;
+    let animSearch;
 
-    function handleStopShow() {
+    function handleStopBigSearch() {
         show = 0;
+        animSearch = 0;
     }
 
-    function handleShowSearch() {
+    function handleBigSearch() {
         show = 1;
+        animSearch = 1;
     }
 </script>
 
 <header>
     <Navbar />
-    <Navbar2 on:showSearch={handleShowSearch} />
+    <Navbar2 on:showBigSearch={handleBigSearch} {animSearch} />
     {#if show}
-        <ShowSearch on:stopShow={handleStopShow} />
+        <BigSearch on:stopBigSearch={handleStopBigSearch} />
     {/if}
 </header>
 
