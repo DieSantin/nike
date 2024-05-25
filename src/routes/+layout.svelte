@@ -3,17 +3,18 @@
     import Navbar from "$inc/Navbar.svelte";
     import Navbar2 from "$inc/Navbar2.svelte";
     import BigSearch from "$inc/BigSearch.svelte";
+    import Sconti from "$inc/Sconti.svelte";
 
-    let show;
+    let showBigSearch;
     let animSearch;
 
     function handleStopBigSearch() {
-        show = 0;
+        showBigSearch = 0;
         animSearch = 0;
     }
 
     function handleBigSearch() {
-        show = 1;
+        showBigSearch = 1;
         animSearch = 1;
     }
 </script>
@@ -21,7 +22,8 @@
 <header>
     <Navbar />
     <Navbar2 on:showBigSearch={handleBigSearch} {animSearch} />
-    {#if show}
+    <Sconti />
+    {#if showBigSearch}
         <BigSearch on:stopBigSearch={handleStopBigSearch} />
     {/if}
 </header>
