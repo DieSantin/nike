@@ -5,8 +5,8 @@
     import BigSearch from "$inc/BigSearch.svelte";
     import Sconti from "$inc/Sconti.svelte";
 
-    let showBigSearch;
     let animSearch;
+    let showBigSearch;
 
     function handleStopBigSearch() {
         showBigSearch = 0;
@@ -22,12 +22,11 @@
 <header>
     <Navbar />
     <Navbar2 on:showBigSearch={handleBigSearch} {animSearch} />
-    <Sconti />
-    {#if showBigSearch}
-        <BigSearch on:stopBigSearch={handleStopBigSearch} />
-    {/if}
 </header>
 
 <main>
     <slot />
+    {#if showBigSearch}
+        <BigSearch on:stopBigSearch={handleStopBigSearch} />
+    {/if}
 </main>

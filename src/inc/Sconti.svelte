@@ -1,61 +1,64 @@
 <script>
     import { onMount } from "svelte";
+    import { slide } from "svelte/transition";
 
-    let seconds = 1;
+    let interval;
+    let currentIndex = 0;
 
-    let leftToRight;
-    let rightToLeft;
-    let hiddenRight;
-    let noHidden;
+    const slides = [
+        {
+            id: 1,
+            title: "Consegna e resi gratuiti",
+            content:
+                "Per i Member Nike, consegna e resi gratuiti entro 30 giorni.",
+            link1: "Scopri di più.",
+            link2: "Unisciti a noi.",
+        },
+        {
+            id: 2,
+            title: "Tutti i nuovi arrivi",
+            content: null,
+            link1: "Acquista",
+            link2: null,
+        },
+    ];
 
     onMount(() => {
-        setInterval(() => {
-            if (seconds > 0) {
-                seconds -= 1;
-            } else {
-                setTimeout(() => {
-                    leftToRight = 1;
-                }, 5000);
-                setTimeout(() => {
-                    leftToRight = 0;
-                    hiddenRight = 1;
-                }, 8000);
-                setTimeout(() => {
-                    hiddenRight = 0;
-                    noHidden = 1;
-                }, 9000);
-                setTimeout(() => {
-                    noHidden = 0;
-                    rightToLeft = 1;
-                }, 20000);
-                seconds = 20;
-            }
-        }, 1000);
+        startCarousel();
+        return () => clearInterval(interval);
     });
+
+    function startCarousel() {
+        intervall = setInterval(() => {
+            currentIndex = (currentIndex + 1) % slides.length;
+        }, 5000);
+    }
 </script>
 
-<div class="bg-gray-100 h-14 overflow-hidden">
+<div class="bg-gray-100 overflow-hidden">
     <div
-        class={`text-center py-2 ml-0
-        transition-all ease-linear duration-150
-        ${leftToRight ? "ml-[2000px]" : null}
-        ${hiddenRight ? "ml-[-3000px] hidden" : null}
-        ${noHidden ? "ml-[-3000px]" : null}
-        ${rightToLeft ? "ml-0" : null}
-        `}
+        class="flex transition-transform duration-500 ease-in-out"
+        style="transform: translateX({-currentIndex * 100}vw);"
     >
-        <div>Consegna e resi gratuiti</div>
-        <div class="flex justify-center">
-            <div class="text-sm">
-                Per i Member Nike, consegna e resi gratuiti entro 30 giorni.
+        {#each slides as slide}
+            <div class="py-1 w-screen shrink-0 carousel-slide">
+                <div class="text-center">{slide.title}</div>
+                <div class="flex justify-center">
+                    {#if slide.content}
+                        <div class="text-sm">
+                            {slide.content}
+                        </div>
+                    {/if}
+                    <div class="text-sm underline font-medium ml-1">
+                        {slide.link1}
+                    </div>
+                    {#if slide.link2}
+                        <div class="text-sm underline font-medium ml-1">
+                            {slide.link2}
+                        </div>
+                    {/if}
+                </div>
             </div>
-            <div class="text-sm underline font-medium ml-1">Scopri di più.</div>
-            <div class="text-sm underline font-medium ml-1">
-                Unisciti a noi.
-            </div>
-        </div>
+        {/each}
     </div>
-</div>
-<div class="text-center mt-20">
-    <div class="text-lg font-bold">Tempo rimasto: {seconds} secondi</div>
 </div>
