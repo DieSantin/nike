@@ -1,6 +1,5 @@
 <script>
     import { onMount } from "svelte";
-    import { slide } from "svelte/transition";
 
     let interval;
     let currentIndex = 0;
@@ -8,18 +7,18 @@
     const slides = [
         {
             id: 1,
+            title: "Tutti i nuovi arrivi",
+            content: null,
+            link1: "Acquista",
+            link2: null,
+        },
+        {
+            id: 2,
             title: "Consegna e resi gratuiti",
             content:
                 "Per i Member Nike, consegna e resi gratuiti entro 30 giorni.",
             link1: "Scopri di più.",
             link2: "Unisciti a noi.",
-        },
-        {
-            id: 2,
-            title: "Tutti i nuovi arrivi",
-            content: null,
-            link1: "Acquista",
-            link2: null,
         },
     ];
 
@@ -29,7 +28,7 @@
     });
 
     function startCarousel() {
-        intervall = setInterval(() => {
+        interval = setInterval(() => {
             currentIndex = (currentIndex + 1) % slides.length;
         }, 5000);
     }
