@@ -40,7 +40,7 @@
         style="transform: translateX({-currentIndex * 100}vw);"
     >
         {#each slides as slide}
-            <div class="py-1 w-screen shrink-0 carousel-slide">
+            <div class="py-1 w-screen shrink-0">
                 <div class="text-center">{slide.title}</div>
                 <div class="flex justify-center">
                     {#if slide.content}

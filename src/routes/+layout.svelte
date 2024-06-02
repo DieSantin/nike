@@ -22,6 +22,7 @@
 <header>
     <Navbar />
     <Navbar2 on:showBigSearch={handleBigSearch} {animSearch} />
+    <Sconti />
 </header>
 
 <main>

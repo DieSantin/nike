@@ -1,7 +1,10 @@
 <script>
-    import Sconti from "$inc/Sconti.svelte";
     import BgContent from "$inc/BgContent.svelte";
+    import MiglioriNovit from "../inc/MiglioriNovità.svelte";
 </script>
 
-<Sconti />
 <BgContent />
+
+<div class="px-10 py-10">
+    <MiglioriNovit />
+</div>
