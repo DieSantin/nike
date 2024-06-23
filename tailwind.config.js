@@ -3,6 +3,10 @@ export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
     extend: {
+      fontFamily: {
+        anton: ['Anton'],
+        roboto: ['Roboto']
+      },
       keyframes: {
         slide: {
           '0%': { transform: 'translateX(100%)' },
@@ -14,17 +18,5 @@ export default {
       },
     }
   },
-  plugins: [
-    function ({ addUtilities }) {
-      addUtilities({
-        '.no-scrollbar': {
-          '-ms-overflow-style': 'none',
-          'scrollbar-width': 'none',
-        },
-        '.no-scrollbar::-webkit-scrollbar': {
-          'display': 'none',
-        },
-      });
-    },
-  ]
+  plugins: []
 };

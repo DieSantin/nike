@@ -29,15 +29,14 @@
     }
 
     function handleDropDown(x) {
-        clearTimeout(timer);
-
         if (x && x !== lastX && !reAnim) reAnim = 1;
 
         if (reAnim && x !== lastX) {
+            clearTimeout(timer);
             dropDown = 0;
             timer = setTimeout(() => {
                 dropDown = 1;
-            }, 20);
+            }, 30);
             reAnim = 0;
         } else if (reAnim && x === lastX) {
             dropDown = 1;

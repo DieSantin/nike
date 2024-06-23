@@ -4,6 +4,7 @@
     import Navbar2 from "$inc/Navbar2.svelte";
     import BigSearch from "$inc/BigSearch.svelte";
     import Sconti from "$inc/Sconti.svelte";
+    import Footer from "$inc/Footer.svelte";
 
     let animSearch;
     let showBigSearch;
@@ -31,3 +32,7 @@
         <BigSearch on:stopBigSearch={handleStopBigSearch} />
     {/if}
 </main>
+
+<footer>
+    <Footer />
+</footer>

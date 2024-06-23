@@ -57,13 +57,15 @@
     }
 </script>
 
-<div class="px-10 pt-10">
-    <div class="flex items-center justify-between px-2 pb-3">
-        <div class="text-4xl font-medium">{slidesTitle}</div>
-        <div class="flex space-x-7">
+<div class="px-10 pt-20">
+    <div class="flex justify-between px-2 pb-3">
+        <div class="text-[30px] font-normal font-roboto">
+            {slidesTitle}
+        </div>
+        <div class="flex space-x-5 pr-3">
             {#if slides.length > 3}
                 <button
-                    class={` w-14 h-14 rounded-full flex justify-center items-center cursor-default
+                    class={` w-12 h-12 rounded-full flex justify-center items-center cursor-default
                     ${
                         clickAbleLeft
                             ? "bg-gray-200 hover:cursor-pointer hover:bg-gray-300 text-gray-700"
@@ -77,7 +79,7 @@
                 </button>
 
                 <button
-                    class={`w-14 h-14 rounded-full flex justify-center items-center cursor-default
+                    class={`w-12 h-12 rounded-full flex justify-center items-center cursor-default
                     ${
                         clickAbleRight
                             ? "bg-gray-200 hover:cursor-pointer hover:bg-gray-300 text-gray-700"
@@ -115,13 +117,13 @@
                 </div>
                 {#if litle}
                     <button
-                        class="absolute top-[83%] left-[8%] px-3 py-1 bg-white rounded-full hover:bg-gray-300"
+                        class="absolute top-[83%] left-[8%] px-3 py-1 bg-white rounded-full hover:bg-gray-300 font-roboto"
                     >
                         {slide.text}
                     </button>
                 {:else}
                     <div
-                        class="absolute flex w-full bg-white px-5 text-2xl font-medium items-center top-[90%] h-[10%]"
+                        class="absolute flex w-full bg-white px-5 text-2xl font-normal items-center top-[90%] h-[10%] font-roboto"
                     >
                         {slide.text}
                     </div>
