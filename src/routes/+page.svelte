@@ -9,22 +9,22 @@
             item: [
                 {
                     id: 0,
-                    url: "./img/nike1.avif",
+                    url: "./img/miglioriAttività/nike1.avif",
                     text: "Scopri Dynamic Air",
                 },
                 {
                     id: 1,
-                    url: "./img/nike2.avif",
+                    url: "./img/miglioriAttività/nike2.avif",
                     text: "Mad brilliance Pack",
                 },
                 {
                     id: 2,
-                    url: "./img/nike3.avif",
+                    url: "./img/miglioriAttività/nike3.avif",
                     text: "Novità: tennis",
                 },
                 {
                     id: 3,
-                    url: "./img/nike4.avif",
+                    url: "./img/miglioriAttività/nike4.avif",
                     text: "Articoli per il fitness",
                 },
             ],
@@ -33,10 +33,66 @@
 
     let miglioriNovitàItem = miglioriNovità[0].item;
     let miglioriNovitàTitle = miglioriNovità[0].title;
+
+    const nostreIcone = [
+        {
+            title: "Acquista le nostre icone",
+
+            item: [
+                {
+                    id: 0,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Scopri Dynamic Air",
+                },
+                {
+                    id: 1,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Mad brilliance Pack",
+                },
+                {
+                    id: 2,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Novità: tennis",
+                },
+                {
+                    id: 3,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Articoli per il fitness",
+                },
+                {
+                    id: 4,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Mad brilliance Pack",
+                },
+                {
+                    id: 5,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Novità: tennis",
+                },
+                {
+                    id: 6,
+                    url: "./img/nostreIcone/nikenike.jpg",
+                    text: "Articoli per il fitness",
+                },
+            ],
+        },
+    ];
+
+    let nostreIconeTitle = nostreIcone[0].title;
+    let nostreIconeItem = nostreIcone[0].item;
 </script>
 
 <BgContent />
 
-<div class="px-10 py-10">
-    <Carousel slides={miglioriNovitàItem} slidesTitle={miglioriNovitàTitle} />
-</div>
+<Carousel
+    slides={miglioriNovitàItem}
+    slidesTitle={miglioriNovitàTitle}
+    idPrefix={"miglioriNovità"}
+/>
+
+<Carousel
+    slides={nostreIconeItem}
+    slidesTitle={nostreIconeTitle}
+    idPrefix={"nostreIcone"}
+    litle="1"
+/>

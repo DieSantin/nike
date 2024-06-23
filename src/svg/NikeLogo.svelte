@@ -1,10 +1,10 @@
 <svg
     aria-hidden="true"
     focusable="false"
-    viewBox="3 2 20 20"
+    viewBox="3 2 18 18"
     role="img"
-    width="60px"
-    height="60px"
+    width="55px"
+    height="55px"
     fill="none"
     ><path
         fill="currentColor"

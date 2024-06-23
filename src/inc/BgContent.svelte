@@ -9,7 +9,7 @@
         ></video>
     </button>
     <div class="absolute left-10 text-white">
-        <div class="font-extrabold text-[80px]">PREPARATI ALL'ESTATE</div>
+        <div class="font-extrabold text-[70px]">PREPARATI ALL'ESTATE</div>
         <div class="font-semibold text-[20px]">
             Scopri gli articoli per dare il massimo in questa stagione
         </div>
