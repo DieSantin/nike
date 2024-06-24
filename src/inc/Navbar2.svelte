@@ -110,33 +110,33 @@
     }
 </script>
 
-<div class="relative grid grid-cols-3 items-center px-12">
+<div class="relative grid grid-cols-[1fr_auto_1fr] items-center px-12">
     <div>
         <NikeLogo />
     </div>
-    <div class="flex space-x-5 font-semibold items-center justify-center">
+    <div class="flex space-x-8 font-semibold items-center justify-center">
         <button
-            class="py-4 px-5 hover:underline"
+            class="py-4 hover:underline"
             on:mouseenter={() => handleDropDown("novità")}
             on:mouseleave={hiddenDropDown}>Novità e in evidenza</button
         >
         <button
-            class="py-4 px-5 hover:underline"
+            class="py-4 hover:underline"
             on:mouseenter={() => handleDropDown("uomo")}
             on:mouseleave={hiddenDropDown}>Uomo</button
         >
         <button
-            class="py-4 px-5 hover:underline"
+            class="py-4 hover:underline"
             on:mouseenter={() => handleDropDown("donna")}
             on:mouseleave={hiddenDropDown}>Donna</button
         >
         <button
-            class="py-4 px-5 hover:underline"
+            class="py-4 hover:underline"
             on:mouseenter={() => handleDropDown("kids")}
             on:mouseleave={hiddenDropDown}>Kids</button
         >
         <button
-            class="py-4 px-5 hover:underline"
+            class="py-4 hover:underline"
             on:mouseenter={() => handleDropDown("outlet")}
             on:mouseleave={hiddenDropDown}>Outlet</button
         >

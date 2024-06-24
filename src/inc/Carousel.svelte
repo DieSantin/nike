@@ -105,7 +105,7 @@
                 class={`relative shrink-0 w-1/3 snap-center
                 ${litle ? "h-[25vw]" : "h-[40vw]"}`}
             >
-                <div
+                <button
                     class={`absolute px-2 top-0 w-full overflow-hidden
                     ${litle ? "h-[93.75%]" : "h-[90%"}`}
                 >
@@ -114,7 +114,7 @@
                         alt={slide.id}
                         class="w-full h-full object-cover object-center"
                     />
-                </div>
+                </button>
                 {#if litle}
                     <button
                         class="absolute top-[83%] left-[8%] px-3 py-1 bg-white rounded-full hover:bg-gray-300 font-roboto"

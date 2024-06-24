@@ -36,7 +36,7 @@
 
 <div class="bg-gray-100 overflow-hidden">
     <div
-        class="flex transition-transform duration-500 ease-in-out"
+        class="flex transition-transform duration-500 ease-in-out py-1"
         style="transform: translateX({-currentIndex * 100}vw);"
     >
         {#each slides as slide}

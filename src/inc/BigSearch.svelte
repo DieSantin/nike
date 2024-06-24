@@ -17,6 +17,10 @@
         dispatch("stopBigSearch");
     }
 
+    function textInput() {
+        navInput.focus();
+    }
+
     onMount(() => {
         setTimeout(() => {
             activeFirstTransition = 1;
@@ -28,9 +32,8 @@
     });
 </script>
 
-<div class="fixed inset-0 bg-black opacity-25 z-100"></div>
 <div
-    class={`fixed w-full h-[360px] left-0 bg-white
+    class={`fixed w-full h-[350px] left-0 bg-white
         transition-all duration-200 ease-linear
         ${activeFirstTransition ? "opacity-100" : "opacity-90"}
         ${activeSecondTransition ? "top-0" : "top-9"}
@@ -39,7 +42,7 @@
     <div class="px-10 grid grid-cols-[1fr_auto_1fr] py-3">
         <div
             class={`transition-all duration-300 ease-out
-            ${activeFirstTransition ? "ml-0" : "ml-[1500px]"}
+            ${activeFirstTransition ? "ml-0" : "ml-[100vw]"}
         `}
         >
             <NikeLogoSearch />
@@ -48,21 +51,21 @@
             <button
                 class={`bg-gray-100 rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200 
                 transition-all duration-300 ease-out 
-                ${activeFirstTransition ? "ml-0 opacity-100" : "ml-[1500px] opacity-0"}
-                ${activeFirstTransition ? "w-[1200px]" : "w-[160px]"}
-            `}
+                ${activeFirstTransition ? "ml-0 opacity-100" : "ml-[100vw] opacity-0"}
+                ${activeFirstTransition ? "w-[60vw]" : "w-[160px]"}`}
+                on:click={() => textInput()}
             >
                 <CoverIcons>
                     <Lente />
                 </CoverIcons>
                 <input
-                    class="bg-transparent focus:outline-none max-w-[530px] placeholder-gray-500"
+                    class="bg-transparent focus:outline-none w-[55vw] placeholder-gray-500"
                     type="text"
                     placeholder="Cerca"
                     bind:this={navInput}
                 /></button
             >
-            <dir class="pt-5">
+            <div class="pt-8">
                 <div
                     class={`text-gray-500 text-[15px] font-medium pb-2
                     transition-opacity ease-linear duration-500
@@ -72,35 +75,34 @@
                 </div>
                 <div
                     class={`text-2xl font-medium
-                    transition-all ease-out duration-500 delay-[80ms]
-                    ${activeSecondTransition ? "opacity-100 py-2" : "opacity-0 py-0"}`}
+                    transition-all ease-out duration-500 delay-[50ms]
+                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-2"}`}
                 >
                     Air Force 1
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[160ms]
-                    ${activeSecondTransition ? "opacity-100 py-2" : "opacity-0 py-0"}`}
+                    transition-all ease-out duration-500 delay-[100ms]
+                    ${activeSecondTransition ? "opacity-100 py-0" : "opacity-0 -translate-y-4"}`}
                 >
                     Jordan
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[240ms]
-                    ${activeSecondTransition ? "opacity-100 py-2" : "opacity-0 py-0"}`}
+                    transition-all ease-out duration-500 delay-[150ms]
+                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-8"}`}
                 >
                     Air Max
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[320ms]
-                    ${activeSecondTransition ? "opacity-100 py-2" : "opacity-0 py-0"}`}
+                    transition-all ease-out duration-500 delay-[200ms]
+                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-16"}`}
                 >
                     Blazer
                 </div>
-            </dir>
+            </div>
         </div>
-
         <button
             class={`flex justify-end py-2
             transition-all duration-300 delay-300
