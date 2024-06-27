@@ -6,6 +6,7 @@
 
     let dispatch = createEventDispatcher();
     let navInput;
+    let bgTransparent = 1;
 
     export let animSearch;
 
@@ -20,19 +21,21 @@
 </script>
 
 <button
-    class={`bg-gray-100 rounded-full flex items-center w-[170px] h-[36px] cursor-text hover:bg-gray-200
+    class={`rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200
     transition-all duration-200 ease-out
+    xl:w-[170px] xl:mx-2 xl:bg-gray-100
     ${animSearch ? "mr-36" : "mr-0"}`}
     on:click={() => {
         focusInput();
         handleShow();
     }}
 >
-    <CoverIcons>
+    <CoverIcons {bgTransparent}>
         <Lente />
     </CoverIcons>
     <input
-        class="bg-transparent focus:outline-none max-w-10 placeholder-gray-500"
+        class="bg-transparent focus:outline-none max-w-10 placeholder-gray-500 hidden
+        xl:block"
         type="text"
         placeholder="Cerca"
         bind:this={navInput}

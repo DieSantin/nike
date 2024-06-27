@@ -16,6 +16,7 @@
     let reAnim = 1;
     let lastX;
     let timer;
+    let timerCheck;
 
     let dispatch = createEventDispatcher();
 
@@ -29,8 +30,6 @@
     }
 
     function handleDropDown(x) {
-        if (x && x !== lastX && !reAnim) reAnim = 1;
-
         if (reAnim && x !== lastX) {
             clearTimeout(timer);
             dropDown = 0;
@@ -41,11 +40,16 @@
         } else if (reAnim && x === lastX) {
             dropDown = 1;
             reAnim = 0;
+        } else if (x && x !== lastX && !reAnim) {
+            dropDown = 1;
         } else {
             dropDown = 1;
         }
 
         if (x) lastX = x;
+
+        clearTimeout(timerCheck);
+        timerCheck = setTimeout(() => {}, 20);
 
         switch (x) {
             case "novità":
@@ -141,7 +145,7 @@
             on:mouseleave={hiddenDropDown}>Outlet</button
         >
     </div>
-    <div class="flex items-center justify-end space-x-6">
+    <div class="flex items-center justify-end">
         <Search on:showBigSearch={handleShowBigSearch} {animSearch} />
         <CoverIcons {bgTransparent}>
             <Cuore />

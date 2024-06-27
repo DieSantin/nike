@@ -1,7 +1,7 @@
 <div class="relative overflow-hidden h-[35vw] bg-black">
-    <button>
+    <button class="w-full h-full">
         <video
-            class="absolute top-1/2 -translate-y-1/2 w-full opacity-60"
+            class="w-full h-full object-cover object-center opacity-60"
             src="./video/bgNike.mp4"
             autoplay
             loop

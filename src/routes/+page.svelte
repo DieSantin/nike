@@ -14,17 +14,17 @@
                 },
                 {
                     id: 1,
-                    url: "./img/miglioriAttività/nike2.avif",
+                    url: "./img/miglioriAttività/nike1.avif",
                     text: "Mad brilliance Pack",
                 },
                 {
                     id: 2,
-                    url: "./img/miglioriAttività/nike3.avif",
+                    url: "./img/miglioriAttività/nike1.avif",
                     text: "Novità: tennis",
                 },
                 {
                     id: 3,
-                    url: "./img/miglioriAttività/nike4.avif",
+                    url: "./img/miglioriAttività/nike1.avif",
                     text: "Articoli per il fitness",
                 },
             ],
@@ -41,37 +41,37 @@
             item: [
                 {
                     id: 0,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Scopri Dynamic Air",
                 },
                 {
                     id: 1,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Mad brilliance Pack",
                 },
                 {
                     id: 2,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Novità: tennis",
                 },
                 {
                     id: 3,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Articoli per il fitness",
                 },
                 {
                     id: 4,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Mad brilliance Pack",
                 },
                 {
                     id: 5,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Novità: tennis",
                 },
                 {
                     id: 6,
-                    url: "./img/nostreIcone/nikenike.jpg",
+                    url: "./img/nostreIcone/nikes.webp",
                     text: "Articoli per il fitness",
                 },
             ],

@@ -9,9 +9,11 @@
         <div>Risorse</div>
         <div>Assistenza</div>
         <div>Azienda</div>
-        <div class="flex justify-end">
-            <Circle />
-            Italia
+        <div class="flex space-x-1 justify-end">
+            <div class="text-gray-500">
+                <Circle />
+            </div>
+            <div>Italia</div>
         </div>
     </div>
 </div>

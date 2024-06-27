@@ -3,6 +3,7 @@
 
     import CoverIcons from "./CoverIcons.svelte";
     import Lente from "$svg/Lente.svelte";
+    import X from "$svg/X.svelte";
     import { onMount } from "svelte";
     import NikeLogoSearch from "$svg/NikeLogoSearch.svelte";
 
@@ -10,8 +11,13 @@
 
     let activeFirstTransition;
     let activeSecondTransition;
+    let text = "";
 
     let navInput;
+
+    function clearText() {
+        text = "";
+    }
 
     function handleStopBigSearch() {
         dispatch("stopBigSearch");
@@ -41,63 +47,73 @@
 >
     <div class="px-10 grid grid-cols-[1fr_auto_1fr] py-3">
         <div
-            class={`transition-all duration-300 ease-out
+            class={`transition-all duration-300
             ${activeFirstTransition ? "ml-0" : "ml-[100vw]"}
         `}
         >
             <NikeLogoSearch />
         </div>
         <div>
-            <button
-                class={`bg-gray-100 rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200 
-                transition-all duration-300 ease-out 
-                ${activeFirstTransition ? "ml-0 opacity-100" : "ml-[100vw] opacity-0"}
-                ${activeFirstTransition ? "w-[60vw]" : "w-[160px]"}`}
-                on:click={() => textInput()}
-            >
-                <CoverIcons>
-                    <Lente />
-                </CoverIcons>
-                <input
-                    class="bg-transparent focus:outline-none w-[55vw] placeholder-gray-500"
-                    type="text"
-                    placeholder="Cerca"
-                    bind:this={navInput}
-                /></button
-            >
+            <div class="relative">
+                <button
+                    class={`bg-gray-100 rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200 
+                    transition-all duration-30 
+                    ${activeFirstTransition ? "ml-0 opacity-100" : "ml-[100vw] "}
+                    ${activeFirstTransition ? "w-[60vw]" : "w-[160px]"}`}
+                    on:click={() => textInput()}
+                >
+                    <CoverIcons>
+                        <Lente />
+                    </CoverIcons>
+                    <input
+                        class="bg-transparent focus:outline-none w-[55vw] placeholder-gray-500"
+                        type="text"
+                        placeholder="Cerca"
+                        bind:value={text}
+                        bind:this={navInput}
+                    />
+                    {#if text}
+                        <div class="absolute right-0">
+                            <CoverIcons on:func={clearText}>
+                                <X />
+                            </CoverIcons>
+                        </div>
+                    {/if}
+                </button>
+            </div>
             <div class="pt-8">
                 <div
                     class={`text-gray-500 text-[15px] font-medium pb-2
-                    transition-opacity ease-linear duration-500
-                    ${activeSecondTransition ? "opacity-100" : "opacity-0"}`}
+                    transition-opacity ease-linear duration-300
+                    ${activeSecondTransition ? " " : "opacity-0"}`}
                 >
                     I termini più ricercati
                 </div>
                 <div
                     class={`text-2xl font-medium
-                    transition-all ease-out duration-500 delay-[50ms]
-                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-2"}`}
+                    transition-all duration-300 delay-[50ms]
+                    ${activeSecondTransition ? " " : "opacity-0 -translate-y-2"}`}
                 >
                     Air Force 1
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[100ms]
-                    ${activeSecondTransition ? "opacity-100 py-0" : "opacity-0 -translate-y-4"}`}
+                    transition-all duration-[350ms] delay-[100ms]
+                    ${activeSecondTransition ? " " : "opacity-0 -translate-y-8"}`}
                 >
                     Jordan
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[150ms]
-                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-8"}`}
+                    transition-all duration-[400ms] delay-[150ms]
+                    ${activeSecondTransition ? " " : "opacity-0 -translate-y-16"}`}
                 >
                     Air Max
                 </div>
                 <div
                     class={`text-2xl font-medium py-2
-                    transition-all ease-out duration-500 delay-[200ms]
-                    ${activeSecondTransition ? "opacity-100" : "opacity-0 -translate-y-16"}`}
+                    transition-all duration-[450ms] delay-[200ms]
+                    ${activeSecondTransition ? " " : "opacity-0 -translate-y-24"}`}
                 >
                     Blazer
                 </div>
@@ -106,7 +122,7 @@
         <button
             class={`flex justify-end py-2
             transition-all duration-300 delay-300
-            ${activeFirstTransition ? "opacity-100 font-semibold" : "opacity-0 text-xs font-bold"}
+            ${activeFirstTransition ? "font-semibold" : "opacity-0 text-xs font-bold"}
             `}
             on:click={() => handleStopBigSearch()}
         >

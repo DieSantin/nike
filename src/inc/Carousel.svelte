@@ -1,43 +1,69 @@
 <script>
+    import { browser } from "$app/environment";
+    import { onDestroy, onMount } from "svelte";
+
     export let slides;
     export let slidesTitle;
     export let idPrefix = "";
     export let litle = 0;
 
-    let currentIndex = 1;
     let isUserScrolling = 1;
     let scrollTimeout;
+    let resizeTimer;
+    let currentIndex = 1;
+    let maxLeft = 1;
     let maxRight = slides.length - 2;
 
-    $: clickAbleLeft = currentIndex == 1 ? 0 : 1;
+    $: clickAbleLeft = currentIndex == maxLeft ? 0 : 1;
     $: clickAbleRight = currentIndex == maxRight ? 0 : 1;
+
+    onMount(() => {
+        if (browser) {
+            window.addEventListener("resize", handleResize);
+            handleResize();
+        }
+    });
+
+    onDestroy(() => {
+        if (browser) window.removeEventListener("resize", handleResize);
+    });
+
+    function handleResize() {
+        clearTimeout(resizeTimer);
+        isUserScrolling = 0;
+        const screenWidth = window.innerWidth;
+
+        if (litle) {
+            if (screenWidth >= 1280) maxRight = slides.length - 2;
+            else maxRight = slides.length - 1;
+        } else {
+            if (screenWidth >= 1024) maxRight = slides.length - 2;
+            else maxRight = slides.length - 1;
+        }
+
+        resizeTimer = setTimeout(() => {
+            isUserScrolling = 1;
+        }, 500);
+    }
 
     function index(direction) {
         isUserScrolling = 0;
 
-        if (direction === "toLeft" && currentIndex != 1) {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-        } else if (
-            direction === "toRight" &&
-            currentIndex != slides.length - 2
-        ) {
-            currentIndex = (currentIndex + 1) % slides.length;
-        }
+        if (direction === "toRight" && clickAbleRight) currentIndex += 1;
+        else if (direction === "toLeft" && clickAbleLeft) currentIndex -= 1;
+
         scrollToCurrentSlide();
     }
 
     function scrollToCurrentSlide() {
-        const currentSlide = document.getElementById(
+        let currentSlide = document.getElementById(
             `${idPrefix}-slide-${currentIndex}`,
         );
-        const scrollContainer = currentSlide.parentElement;
 
-        const targetScrollLeft =
-            currentSlide.offsetLeft -
-            (scrollContainer.clientWidth - currentSlide.clientWidth) / 2;
+        let scrollContainer = currentSlide.parentElement;
 
         scrollContainer.scrollTo({
-            left: targetScrollLeft,
+            left: currentSlide.offsetLeft - currentSlide.clientWidth,
             behavior: "smooth",
         });
 
@@ -57,9 +83,12 @@
     }
 </script>
 
-<div class="px-10 pt-20">
-    <div class="flex justify-between px-2 pb-3">
-        <div class="text-[30px] font-normal font-roboto">
+<div class="px-10 pt-14">
+    <div class="flex justify-between px-12 pt-14 pb-3">
+        <div
+            class="font-normal font-roboto text-[26px] translate-y-2
+            xl:text-[30px]"
+        >
             {slidesTitle}
         </div>
         <div class="flex space-x-5 pr-3">
@@ -102,28 +131,34 @@
         {#each slides as slide, i}
             <div
                 id={`${idPrefix}-slide-${i}`}
-                class={`relative shrink-0 w-1/3 snap-center
-                ${litle ? "h-[25vw]" : "h-[40vw]"}`}
+                class={`relative shrink-0
+                ${
+                    litle
+                        ? "xl:h-[22vw] xl:w-1/3 xl:snap-center sm:h-[31vw] sm:w-1/2 sm:snap-end"
+                        : "lg:h-[40vw] lg:w-1/3 lg:snap-center sm:h-[60vw] sm:w-1/2 sm:snap-end"
+                }`}
             >
                 <button
-                    class={`absolute px-2 top-0 w-full overflow-hidden
+                    class={`px-2 w-full overflow-hidden
                     ${litle ? "h-[93.75%]" : "h-[90%"}`}
                 >
                     <img
                         src={slide.url}
                         alt={slide.id}
-                        class="w-full h-full object-cover object-center"
+                        class={`w-[100%] object-cover object-center
+                        ${litle ? "xl:h-[22vw] sm:h-[31vw]" : "lg:h-[40vw] sm:h-[60vw]"}`}
                     />
                 </button>
                 {#if litle}
                     <button
-                        class="absolute top-[83%] left-[8%] px-3 py-1 bg-white rounded-full hover:bg-gray-300 font-roboto"
+                        class="absolute top-[75%] left-[11%] px-3 py-1 bg-white rounded-full hover:bg-gray-300 font-roboto"
                     >
                         {slide.text}
                     </button>
                 {:else}
                     <div
-                        class="absolute flex w-full bg-white px-5 text-2xl font-normal items-center top-[90%] h-[10%] font-roboto"
+                        class="absolute flex w-full bg-white px-5 font-normal items-center top-[90%] h-[10%] font-roboto text-xl
+                        xl:text-2xl"
                     >
                         {slide.text}
                     </div>
