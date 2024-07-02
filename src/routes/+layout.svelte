@@ -5,24 +5,36 @@
     import BigSearch from "$inc/BigSearch.svelte";
     import Sconti from "$inc/Sconti.svelte";
     import Footer from "$inc/Footer.svelte";
+    import Sidebar from "../inc/Sidebar.svelte";
 
-    let animSearch;
-    let showBigSearch;
+    let showBigSearch = false;
+    let showSidebar = false;
 
     function handleStopBigSearch() {
-        showBigSearch = 0;
-        animSearch = 0;
+        showBigSearch = false;
     }
 
     function handleBigSearch() {
-        showBigSearch = 1;
-        animSearch = 1;
+        showBigSearch = true;
+    }
+
+    function handleSidebarMenu() {
+        showSidebar = true;
+    }
+
+    function hideSidebar() {
+        showSidebar = false;
     }
 </script>
 
 <header>
-    <Navbar />
-    <Navbar2 on:showBigSearch={handleBigSearch} {animSearch} />
+    <div class="hidden lg:block">
+        <Navbar />
+    </div>
+    <Navbar2
+        on:showBigSearch={handleBigSearch}
+        on:showSidebar={handleSidebarMenu}
+    />
     <Sconti />
 </header>
 
@@ -30,6 +42,9 @@
     <slot />
     {#if showBigSearch}
         <BigSearch on:stopBigSearch={handleStopBigSearch} />
+    {/if}
+    {#if showSidebar}
+        <Sidebar on:hideSidebar={hideSidebar} />
     {/if}
 </main>
 

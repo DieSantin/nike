@@ -6,9 +6,6 @@
 
     let dispatch = createEventDispatcher();
     let navInput;
-    let bgTransparent = 1;
-
-    export let animSearch;
 
     function handleShow() {
         dispatch("showBigSearch");
@@ -16,7 +13,6 @@
 
     function focusInput() {
         navInput.focus();
-        animSearch = 1;
     }
 </script>
 
@@ -24,13 +20,13 @@
     class={`rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200
     transition-all duration-200 ease-out
     xl:w-[170px] xl:mx-2 xl:bg-gray-100
-    ${animSearch ? "mr-36" : "mr-0"}`}
+    "mr-0"}`}
     on:click={() => {
         focusInput();
         handleShow();
     }}
 >
-    <CoverIcons {bgTransparent}>
+    <CoverIcons bgTransparent="true">
         <Lente />
     </CoverIcons>
     <input

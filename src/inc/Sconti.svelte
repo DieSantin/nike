@@ -36,23 +36,29 @@
 
 <div class="bg-gray-100 overflow-hidden">
     <div
-        class="flex transition-transform duration-500 ease-in-out py-1"
+        class="flex transition-transform duration-500 ease-in-out py-0 sm:py-1 items-center"
         style="transform: translateX({-currentIndex * 100}vw);"
     >
         {#each slides as slide}
             <div class="py-1 w-screen shrink-0">
-                <div class="text-center">{slide.title}</div>
-                <div class="flex justify-center">
+                <div class="text-center leading-5">{slide.title}</div>
+                <div class="text-center justify-center">
                     {#if slide.content}
-                        <div class="text-sm">
+                        <div class="sm:inline text-[12px] sm:text-sm">
                             {slide.content}
                         </div>
                     {/if}
-                    <div class="text-sm underline font-medium ml-1">
-                        {slide.link1}
-                    </div>
+                    {#if slide.link1}
+                        <div
+                            class="inline text-[12px] sm:text-sm underline font-medium ml-1"
+                        >
+                            {slide.link1}
+                        </div>
+                    {/if}
                     {#if slide.link2}
-                        <div class="text-sm underline font-medium ml-1">
+                        <div
+                            class="inline text-[12px] sm:text-sm underline font-medium ml-1"
+                        >
                             {slide.link2}
                         </div>
                     {/if}

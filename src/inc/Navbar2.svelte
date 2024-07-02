@@ -2,18 +2,24 @@
     import Cuore from "$svg/Cuore.svelte";
     import NikeLogo from "$svg/NikeLogo.svelte";
     import Borsetta from "$svg/Borsetta.svelte";
+    import Menu from "$svg/Menu.svelte";
     import Search from "./Search.svelte";
     import CoverIcons from "./CoverIcons.svelte";
 
     import { createEventDispatcher } from "svelte";
 
-    export let animSearch;
+    const menuItems = [
+        { id: "novità", label: "Novità e in evidenza" },
+        { id: "uomo", label: "Uomo" },
+        { id: "donna", label: "Donna" },
+        { id: "kids", label: "Kids" },
+        { id: "outlet", label: "Outlet" },
+    ];
 
     let items = [];
 
-    let bgTransparent = 1;
-    let dropDown = 0;
-    let reAnim = 1;
+    let dropDown = false;
+    let reanim = true;
     let lastX;
     let timer;
     let timerCheck;
@@ -26,32 +32,36 @@
 
     function hiddenDropDown(x) {
         dropDown = 0;
-        if (x === "re") reAnim = 1;
+        if (x === "reanimation") reanim = true;
     }
 
-    function handleDropDown(x) {
-        if (reAnim && x !== lastX) {
+    function handleSidebarMenu() {
+        dispatch("showSidebar");
+    }
+
+    function handleDropDown(dropDownElement) {
+        if (reanim && dropDownElement !== lastX) {
             clearTimeout(timer);
-            dropDown = 0;
+            dropDown = false;
             timer = setTimeout(() => {
-                dropDown = 1;
+                dropDown = true;
             }, 30);
-            reAnim = 0;
-        } else if (reAnim && x === lastX) {
-            dropDown = 1;
-            reAnim = 0;
-        } else if (x && x !== lastX && !reAnim) {
-            dropDown = 1;
+            reanim = false;
+        } else if (reanim && dropDownElement === lastX) {
+            dropDown = true;
+            reanim = false;
+        } else if (dropDownElement && dropDownElement !== lastX && !reanim) {
+            dropDown = true;
         } else {
-            dropDown = 1;
+            dropDown = true;
         }
 
-        if (x) lastX = x;
+        if (dropDownElement) lastX = dropDownElement;
 
         clearTimeout(timerCheck);
         timerCheck = setTimeout(() => {}, 20);
 
-        switch (x) {
+        switch (dropDownElement) {
             case "novità":
                 items = [
                     {
@@ -114,52 +124,48 @@
     }
 </script>
 
-<div class="relative grid grid-cols-[1fr_auto_1fr] items-center px-12">
+<div
+    class="relative grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] items-center px-7 lg:px-12"
+>
     <div>
         <NikeLogo />
     </div>
-    <div class="flex space-x-8 font-semibold items-center justify-center">
-        <button
-            class="py-4 hover:underline"
-            on:mouseenter={() => handleDropDown("novità")}
-            on:mouseleave={hiddenDropDown}>Novità e in evidenza</button
-        >
-        <button
-            class="py-4 hover:underline"
-            on:mouseenter={() => handleDropDown("uomo")}
-            on:mouseleave={hiddenDropDown}>Uomo</button
-        >
-        <button
-            class="py-4 hover:underline"
-            on:mouseenter={() => handleDropDown("donna")}
-            on:mouseleave={hiddenDropDown}>Donna</button
-        >
-        <button
-            class="py-4 hover:underline"
-            on:mouseenter={() => handleDropDown("kids")}
-            on:mouseleave={hiddenDropDown}>Kids</button
-        >
-        <button
-            class="py-4 hover:underline"
-            on:mouseenter={() => handleDropDown("outlet")}
-            on:mouseleave={hiddenDropDown}>Outlet</button
-        >
+    <div
+        class="hidden lg:flex space-x-8 font-semibold items-center justify-center"
+    >
+        {#each menuItems as item}
+            <button
+                class="py-4 hover:underline"
+                on:mouseenter={() => handleDropDown(item.id)}
+                on:mouseleave={hiddenDropDown}
+            >
+                {item.label}
+            </button>
+        {/each}
     </div>
     <div class="flex items-center justify-end">
-        <Search on:showBigSearch={handleShowBigSearch} {animSearch} />
-        <CoverIcons {bgTransparent}>
+        <Search on:showBigSearch={handleShowBigSearch} />
+        <CoverIcons bgTransparent="true">
             <Cuore />
         </CoverIcons>
-        <CoverIcons {bgTransparent}>
+        <CoverIcons bgTransparent="true">
             <Borsetta />
         </CoverIcons>
+        <div class="block lg:hidden">
+            <CoverIcons
+                bgTransparent="true"
+                on:func={() => handleSidebarMenu()}
+            >
+                <Menu />
+            </CoverIcons>
+        </div>
     </div>
     <div
         class={`absolute top-full left-0 w-full bg-white overflow-hidden z-20
-        ${dropDown ? "transition-h duration-[80ms] ease-in h-[400px]" : "h-0"}`}
+        ${dropDown ? "transition-h duration-150 ease-in h-[400px]" : "h-0"}`}
         role="group"
         on:mouseenter={() => handleDropDown(null)}
-        on:mouseleave={() => hiddenDropDown("re")}
+        on:mouseleave={() => hiddenDropDown("reanimation")}
     >
         {#each items as item}
             <div class="flex space-x-32 justify-center">

@@ -1,7 +1,6 @@
 <script>
     import BgContent from "$inc/BgContent.svelte";
     import Carousel from "$inc/Carousel.svelte";
-
     const miglioriNovità = [
         {
             title: "Tutte le migliori novità",
@@ -85,14 +84,13 @@
 <BgContent />
 
 <Carousel
+    idPrefix={"miglioriNovità"}
     slides={miglioriNovitàItem}
     slidesTitle={miglioriNovitàTitle}
-    idPrefix={"miglioriNovità"}
 />
-
 <Carousel
+    small={true}
+    idPrefix={"nostreIcone"}
     slides={nostreIconeItem}
     slidesTitle={nostreIconeTitle}
-    idPrefix={"nostreIcone"}
-    litle="1"
 />

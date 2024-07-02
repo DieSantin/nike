@@ -9,8 +9,8 @@
 
     let dispatch = createEventDispatcher();
 
-    let activeFirstTransition;
-    let activeSecondTransition;
+    let activeFirstTransition = false;
+    let activeSecondTransition = false;
     let text = "";
 
     let navInput;
@@ -29,26 +29,26 @@
 
     onMount(() => {
         setTimeout(() => {
-            activeFirstTransition = 1;
+            activeFirstTransition = true;
             navInput.focus();
         }, 0);
         setTimeout(() => {
-            activeSecondTransition = 1;
+            activeSecondTransition = true;
         }, 500);
     });
 </script>
 
 <div
-    class={`fixed w-full h-[350px] left-0 bg-white
-        transition-all duration-200 ease-linear
-        ${activeFirstTransition ? "opacity-100" : "opacity-90"}
-        ${activeSecondTransition ? "top-0" : "top-9"}
+    class={`fixed w-full h-[700px] lg:h-[350px] left-0 bg-white
+        transition-all duration-200 ease-linear top-0
+        ${activeFirstTransition ? "opacity-100" : "opacity-95"}
+        ${activeSecondTransition ? "lg:top-0" : "lg:top-9"}
         `}
 >
-    <div class="px-10 grid grid-cols-[1fr_auto_1fr] py-3">
+    <div class="px-10 grid grid-cols-2 lg:grid-cols-[1fr_auto_1fr] py-3">
         <div
-            class={`transition-all duration-300
-            ${activeFirstTransition ? "ml-0" : "ml-[100vw]"}
+            class={`transition-all duration-300 hidden lg:block
+            ${activeFirstTransition ? "ml-0" : "ml-[60vw]"}
         `}
         >
             <NikeLogoSearch />
@@ -57,9 +57,9 @@
             <div class="relative">
                 <button
                     class={`bg-gray-100 rounded-full flex items-center h-[36px] cursor-text hover:bg-gray-200 
-                    transition-all duration-30 
-                    ${activeFirstTransition ? "ml-0 opacity-100" : "ml-[100vw] "}
-                    ${activeFirstTransition ? "w-[60vw]" : "w-[160px]"}`}
+                    transition-all duration-30 px-2 md:px-0
+                    ${activeFirstTransition ? "ml-0 opacity-100" : ""}
+                    ${activeFirstTransition ? "w-[50vw] sm:w-[60vw]" : "w-[0vw]"}`}
                     on:click={() => textInput()}
                 >
                     <CoverIcons>
@@ -83,8 +83,8 @@
             </div>
             <div class="pt-8">
                 <div
-                    class={`text-gray-500 text-[15px] font-medium pb-2
-                    transition-opacity ease-linear duration-300
+                    class={`text-gray-500 text-[15px] font-medium pb-4
+                    transition-opacity ease-linear duration-300 leading-4
                     ${activeSecondTransition ? " " : "opacity-0"}`}
                 >
                     I termini più ricercati
