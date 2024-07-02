@@ -40,9 +40,6 @@
         disableUserScrolling();
         const screenWidth = window.innerWidth;
 
-        if (screenWidth <= 640) hideButtons = true;
-        else hideButtons = false;
-
         if (!small) {
             if (screenWidth >= 1024) bigCarouselSetup();
             else smallCarouselSetup();
@@ -150,37 +147,36 @@
         >
             {slidesTitle}
         </div>
-        {#if !hideButtons}
-            <div class="flex space-x-4 pr-3">
-                <button
-                    class={` w-12 h-12 rounded-full flex justify-center items-center cursor-default
+
+        <div class="space-x-4 pr-3 hidden sm:flex">
+            <button
+                class={` w-12 h-12 rounded-full flex justify-center items-center cursor-default
                     ${
                         clickAbleLeft
                             ? "bg-gray-200 hover:cursor-pointer hover:bg-gray-300 text-gray-700"
                             : "bg-gray-50 hover:cursor-default text-gray-300"
                     }`}
-                    on:click={() => index("left")}
-                >
-                    <span class="material-symbols-sharp text-2xl">
-                        chevron_left
-                    </span>
-                </button>
+                on:click={() => index("left")}
+            >
+                <span class="material-symbols-sharp text-2xl">
+                    chevron_left
+                </span>
+            </button>
 
-                <button
-                    class={`w-12 h-12 rounded-full flex justify-center items-center cursor-default
+            <button
+                class={`w-12 h-12 rounded-full flex justify-center items-center cursor-default
                     ${
                         clickAbleRight
                             ? "bg-gray-200 hover:cursor-pointer hover:bg-gray-300 text-gray-700"
                             : "bg-gray-50 hover:cursor-default text-gray-300"
                     }`}
-                    on:click={() => index("right")}
-                >
-                    <span class="material-symbols-sharp text-2xl">
-                        chevron_right
-                    </span>
-                </button>
-            </div>
-        {/if}
+                on:click={() => index("right")}
+            >
+                <span class="material-symbols-sharp text-2xl">
+                    chevron_right
+                </span>
+            </button>
+        </div>
     </div>
 
     <div
